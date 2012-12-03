@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/main"
+        >
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Please fill a fields:"></TextView>
+    <Spinner android:layout_width="fill_parent"
+                  android:id="@+id/cp_list"
+                  android:layout_height="wrap_content"></Spinner>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Content provider authority:"></TextView>
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:text="content://..."
+              android:id="@+id/authority"></EditText>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Projection:"></TextView>
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:text="* from sqlite_master--"
+              android:id="@+id/projection"></EditText>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Selection:"></TextView>
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:id="@+id/selection"></EditText>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Selection arg:"></TextView>
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:id="@+id/selection_arg"></EditText>
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/run"
+            android:text="Run query"></Button>
+</LinearLayout>
