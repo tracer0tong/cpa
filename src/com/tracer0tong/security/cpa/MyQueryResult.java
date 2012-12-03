@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 /**
  * User: @tracer0tong (tracer.tong@yandex.ru)
@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class MyQueryResult extends Activity {
 
     private Button btn;
-    private TextView result_text;
+    private EditText result_text;
     private String authority;
     private String projection;
     private String selection;
@@ -27,7 +27,7 @@ public class MyQueryResult extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
         btn = (Button)findViewById(R.id.res_close);
-        result_text = (TextView)findViewById(R.id.res_text);
+        result_text = (EditText)findViewById(R.id.res_text);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
