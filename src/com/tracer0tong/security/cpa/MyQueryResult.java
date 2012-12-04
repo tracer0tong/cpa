@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * User: @tracer0tong (tracer.tong@yandex.ru)
@@ -58,7 +59,10 @@ public class MyQueryResult extends Activity {
         {
             Uri uri = Uri.parse(authority);
             String[] prj = {projection};
+            if (projection == null) prj = null;
             String[] sel_args = {selection_args};
+            if (selection_args == null) sel_args = null;
+            Toast.makeText(this, selection_args, Toast.LENGTH_LONG);
             Cursor c = getContentResolver().query(uri, prj, selection, sel_args, null);
             int col_c = c.getColumnCount();
             s += c.getCount();
