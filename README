@@ -1,1 +1,4 @@
 This is a small utility for Android Content Providers analysis.
+
+You can select avalaible content provider from list of all installed on device. 
+And then trying to get access or make a SQL injection (of course if provider allows SQL).
