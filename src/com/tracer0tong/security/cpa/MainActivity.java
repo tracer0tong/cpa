@@ -35,10 +35,12 @@ public class MainActivity extends Activity {
             providers = pack.providers;
             if (providers != null) {
                 for (ProviderInfo provider : providers) {
-                    cps.add(provider.authority);
+                    if (provider.authority != null)
+                        cps.add(provider.authority);
                 }
             }
         }
+
         aa = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,cps);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cs.setAdapter(aa);
