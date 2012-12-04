@@ -38,13 +38,14 @@ public class MyQueryResult extends Activity {
 
         Intent intent = getIntent();
 
-        authority = intent.getStringExtra("authority");
+        MyContentProviderInfo cpi = intent.getParcelableExtra("cpi");
+        authority = cpi.getAuthority();
         if (authority.equals("")) authority = null;
-        projection  = intent.getStringExtra("projection");
+        projection  = cpi.getProjection();
         if (projection.equals("")) projection = null;
-        selection  = intent.getStringExtra("selection");
+        selection  = cpi.getSelection();
         if (selection.equals("")) selection = null;
-        selection_args  = intent.getStringExtra("selection_args");
+        selection_args  = cpi.getSelectionArgs();
         if (selection_args.equals("")) selection_args = null;
         showResult();
     }
@@ -52,8 +53,11 @@ public class MyQueryResult extends Activity {
     private void showResult()
     {
         result_text.setText("Running...");
-        String s = "";
+        String s = "Authority:";
         s += authority;
+        s += "\nProjection:";
+        s += projection;
+        s += "\n";
         try
         {
             Uri uri = Uri.parse(authority);
@@ -61,7 +65,6 @@ public class MyQueryResult extends Activity {
             if (projection == null) prj = null;
             String[] sel_args = {selection_args};
             if (selection_args == null) sel_args = null;
-
             Cursor c = getContentResolver().query(uri, prj, selection, sel_args, null);
             int col_c = c.getColumnCount();
             s += c.getCount();
