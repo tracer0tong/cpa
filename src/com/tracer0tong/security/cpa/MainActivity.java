@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 
     public void ChangeAuthority()
     {
-        auth.setText("content://" + cps.get(cs.getSelectedItemPosition()).getAuthority());
+        auth.setText(cps.get(cs.getSelectedItemPosition()).getAuthority());
     }
 
     public class MyAdapter extends ArrayAdapter<String>{

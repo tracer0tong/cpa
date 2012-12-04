@@ -57,6 +57,10 @@ public class MyQueryResult extends Activity {
         s += authority;
         s += "\nProjection:";
         s += projection;
+        s += "\nSelection:";
+        s += selection;
+        s += "\nSelection args:";
+        s += selection_args;
         s += "\n";
         try
         {
