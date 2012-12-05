@@ -79,6 +79,7 @@ public class MainActivity extends Activity {
     {
         Intent my_intent = new Intent(this, MyQueryResult.class);
         MyContentProviderInfo mcpi = cps.get(cs.getSelectedItemPosition());
+        mcpi.setAuthority(auth.getText().toString());
         mcpi.setProjection(proj.getText().toString());
         mcpi.setSelection(sel.getText().toString());
         mcpi.setSelectionArgs(sel_arg.getText().toString());
