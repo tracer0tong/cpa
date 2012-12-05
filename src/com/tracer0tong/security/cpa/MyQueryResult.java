@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import java.util.Formatter;
 
 /**
  * User: @tracer0tong (tracer.tong@yandex.ru)
@@ -18,6 +21,7 @@ public class MyQueryResult extends Activity {
 
     private Button btn;
     private EditText result_text;
+    private ImageView iv;
     private String authority;
     private String projection;
     private String selection;
@@ -28,6 +32,7 @@ public class MyQueryResult extends Activity {
         setContentView(R.layout.result);
         btn = (Button)findViewById(R.id.res_close);
         result_text = (EditText)findViewById(R.id.res_text);
+        iv = (ImageView)findViewById(R.id.image);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +55,21 @@ public class MyQueryResult extends Activity {
         showResult();
     }
 
+    public static String bytesToHexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+
+        Formatter formatter = new Formatter(sb);
+        for (byte b : bytes) {
+            formatter.format("%02x", b);
+        }
+
+        return sb.toString();
+    }
+
     private void showResult()
     {
+        String Columns[];
+        byte Image[];
         result_text.setText("Running...");
         String s = "Authority:";
         s += authority;
@@ -71,21 +89,38 @@ public class MyQueryResult extends Activity {
             if (selection_args == null) sel_args = null;
             Cursor c = getContentResolver().query(uri, prj, selection, sel_args, null);
             int col_c = c.getColumnCount();
-            s += c.getCount();
-            s +=":";
-            s += col_c;
-            s += "\n";
+            Columns = new String[col_c];
             for (int i=0; i<col_c; i++)
             {
                 s += c.getColumnName(i);
                 s += ":";
+                Columns[i] = c.getColumnName(i);
             }
             s += "\n";
             if (c.moveToFirst()) {
                 do {
                     for (int i=0; i<col_c; i++)
                     {
-                        s += c.getString(i);
+                        if (Columns[i].toLowerCase().contains("image"))
+                        {
+                            Image = c.getBlob(i);
+                            //iv.setImageBitmap(BitmapFactory.decodeByteArray(Image,0,Image.length));
+                            //s += "<IMAGE?>";
+                            byte[] blob = c.getBlob(i);
+                            s +=  bytesToHexString(blob);
+                        }
+                        else
+                        {
+                            try
+                            {
+                                s += c.getString(i);
+                            }
+                            catch (Exception e)
+                            {
+                                byte[] blob = c.getBlob(i);
+                                s += bytesToHexString(blob);
+                            }
+                        }
                         s += ";";
                     }
                     s += "\n";
