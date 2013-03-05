@@ -38,6 +38,12 @@
         <EditText android:layout_height="wrap_content"
                   android:layout_width="fill_parent"
                   android:id="@+id/selection_arg"></EditText>
+        <TextView android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Filename:"></TextView>
+        <EditText android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:id="@+id/filename_arg"></EditText>
         <Button android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/run"

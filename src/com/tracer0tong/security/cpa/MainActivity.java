@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private EditText proj;
     private EditText sel;
     private EditText sel_arg;
+    private EditText file_arg;
     private ArrayList<MyContentProviderInfo> cps;
     private ProviderInfo[] providers;
 
@@ -70,6 +71,7 @@ public class MainActivity extends Activity {
         proj = (EditText)findViewById(R.id.projection);
         sel = (EditText)findViewById(R.id.selection);
         sel_arg = (EditText)findViewById(R.id.selection_arg);
+        file_arg = (EditText)findViewById(R.id.filename_arg);
 
         FillSpinner();
         AddListeners();
@@ -83,6 +85,7 @@ public class MainActivity extends Activity {
         mcpi.setProjection(proj.getText().toString());
         mcpi.setSelection(sel.getText().toString());
         mcpi.setSelectionArgs(sel_arg.getText().toString());
+        mcpi.setFilenameArgs(file_arg.getText().toString());
         my_intent.putExtra("cpi",mcpi);
         startActivity(my_intent);
     }

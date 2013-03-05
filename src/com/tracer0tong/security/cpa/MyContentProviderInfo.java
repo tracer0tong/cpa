@@ -13,6 +13,7 @@ public class MyContentProviderInfo implements Parcelable{
     private String projection;
     private String selection;
     private String selection_args;
+    private String filename_args;
     private String read_permission;
     private String write_permission;
     public static final int PERMISSIONS_READ = 0;
@@ -40,6 +41,10 @@ public class MyContentProviderInfo implements Parcelable{
         return this.selection_args;
     }
 
+    public String getFilenameArgs(){
+        return this.filename_args;
+    }
+
     public void setAuthority(String s)
     {
         this.authority = s;
@@ -57,6 +62,10 @@ public class MyContentProviderInfo implements Parcelable{
         this.selection_args = s;
     }
 
+    public void setFilenameArgs(String s){
+        this.filename_args = s;
+    }
+
     public String[] getPermissions()
     {
         String[] perm = new String[2];
@@ -67,7 +76,7 @@ public class MyContentProviderInfo implements Parcelable{
 
     @Override
     public int describeContents() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;
     }
 
     public MyContentProviderInfo(Parcel in)
@@ -76,6 +85,7 @@ public class MyContentProviderInfo implements Parcelable{
         this.projection = in.readString();
         this.selection = in.readString();
         this.selection_args = in.readString();
+        this.filename_args = in.readString();
     }
 
     @Override
@@ -84,6 +94,7 @@ public class MyContentProviderInfo implements Parcelable{
         out.writeString(projection);
         out.writeString(selection);
         out.writeString(selection_args);
+        out.writeString(filename_args);
     }
 
     public static final Parcelable.Creator<MyContentProviderInfo> CREATOR
